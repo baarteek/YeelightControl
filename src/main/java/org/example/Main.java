@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.YeelightAPI.YeelightActions;
 import org.example.YeelightAPI.YeelightBulb;
 import org.example.YeelightAPI.YeelightCommand;
+import org.example.retrievers.GoldPriceRetriever;
 
 import java.io.IOException;
 
@@ -10,24 +12,8 @@ public class Main {
         YeelightBulb bulb = new YeelightBulb();
 
         try {
-            bulb.connect("192.168.1.4");
-
-            //YeelightCommand.setDuration(1000);
-            //YeelightCommand.setTransitionEffect("sudden");
-
-            //bulb.sendCommand(YeelightCommand.generateTurnOnCommand());
-            //bulb.sendCommand(YeelightCommand.generateTurnOffCommand());
-            //bulb.sendCommand(YeelightCommand.generateSetColorCommand(255, 0, 0));
-            //bulb.sendCommand(YeelightCommand.generateSetBrightCommand(90));
-            //bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(2000));
-            //bulb.sendCommand(YeelightCommand.generateSetNameCommand("bulb"));
-            bulb.sendCommand(YeelightCommand.generateSetAdjustCommand("increase", "color"));
-
-
-            String response = bulb.readResponse();
-            System.out.println(response);
-
-            bulb.disconnect();
+            YeelightActions bulbActions = new YeelightActions();
+            bulbActions.adjustBrightnessBasedOnGoldPrice();
         } catch (IOException e) {
             e.printStackTrace();
         }

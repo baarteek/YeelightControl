@@ -1,6 +1,5 @@
 package org.example.YeelightAPI;
 
-import java.util.Arrays;
 
 public class YeelightCommand {
     private static String transitionEffect = "smooth";
@@ -50,6 +49,5 @@ public class YeelightCommand {
     public static String generateSetAdjustCommand(String adjustType, String prop) {
         return String.format("{\"id\":7, \"method\":\"set_adjust\", \"params\":[\"%s\", \"%s\"]}\r\n", adjustType, prop);
     }
-
 
 }
