@@ -10,11 +10,12 @@ public class Main {
         YeelightBulb bulb = new YeelightBulb();
 
         try {
-            bulb.connect("192.168.1.4");
+            bulb.connect("192.168.1.3");
 
             //bulb.sendCommand(YeelightCommand.generateTurnOnCommand());
             //bulb.sendCommand(YeelightCommand.generateTurnOffCommand());
-            bulb.sendCommand(YeelightCommand.generateSetColorCommand(100, 0, 10));
+            //bulb.sendCommand(YeelightCommand.generateSetColorCommand(255, 0, 0));
+            bulb.sendCommand(YeelightCommand.generateSetBrightCommand(90));
 
             String response = bulb.readResponse();
             System.out.println(response);
