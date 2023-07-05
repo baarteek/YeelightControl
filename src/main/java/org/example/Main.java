@@ -10,10 +10,18 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         YeelightBulb bulb = new YeelightBulb();
+        YeelightActions bulbActions = new YeelightActions(bulb);
 
         try {
-            YeelightActions bulbActions = new YeelightActions();
+            bulb.connect();
+
+            bulb.sendCommand(YeelightCommand.generateTurnOnCommand());
             bulbActions.adjustBrightnessBasedOnGoldPrice();
+
+            String response = bulb.readResponse();
+            System.out.println(response);
+
+            bulb.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }

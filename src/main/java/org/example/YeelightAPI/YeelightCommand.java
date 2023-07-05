@@ -50,4 +50,7 @@ public class YeelightCommand {
         return String.format("{\"id\":7, \"method\":\"set_adjust\", \"params\":[\"%s\", \"%s\"]}\r\n", adjustType, prop);
     }
 
+    public static String generateStartColorFlowCommand(int count, int action, String flowExpression) {
+        return String.format("{\"id\":8, \"method\":\"start_cf\", \"params\":[%d, %d, \"%s\"]}\r\n", count, action, flowExpression);
+    }
 }
