@@ -54,7 +54,7 @@ public class YeelightCommand {
         return String.format("{\"id\":6, \"method\":\"set_name\", \"params\":[\"%s\"]}\r\n", name);
     }
 
-    public static String generateSetAdjustCommand(String adjustType, String prop) {
+    public static String generateAdjustCommand(String adjustType, String prop) {
         return String.format("{\"id\":7, \"method\":\"set_adjust\", \"params\":[\"%s\", \"%s\"]}\r\n", adjustType, prop);
     }
 

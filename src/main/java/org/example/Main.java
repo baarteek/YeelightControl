@@ -16,8 +16,7 @@ public class Main {
         try {
             bulb.connect();
 
-            bulbActions.setDuration(1000);
-            bulbActions.setColor(1, 200, 3);
+            bulbActions.adjustProperties("circle", "bright");
 
             String response = bulb.readResponse();
             System.out.println(response);

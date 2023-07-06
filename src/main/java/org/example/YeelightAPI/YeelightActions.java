@@ -34,12 +34,18 @@ public class YeelightActions {
         YeelightCommand.setDuration(duration);
     }
 
-    public void setColor(int red, int green, int blue) throws IOException {
+    public void setColorRGB(int red, int green, int blue) throws IOException {
         red = Math.max(0, Math.min(255, red));
         green = Math.max(0, Math.min(255, green));
         blue = Math.max(0, Math.min(255, blue));
 
         bulb.sendCommand(YeelightCommand.generateSetRGBCommand(red, green, blue));
+    }
+
+    public void setColorHSV(int hue, int saturation) throws IOException {
+        hue = Math.max(0, Math.min(359, hue));
+        saturation = Math.max(0, Math.min(100, saturation));
+        bulb.sendCommand(YeelightCommand.generateSetHSVCommand(hue, saturation));
     }
 
     public void setBrightness(int brightness) throws IOException {
@@ -50,6 +56,14 @@ public class YeelightActions {
     public void setColorTemperature(int colorTemperature) throws IOException {
         colorTemperature = Math.max(1700, Math.min(6500, colorTemperature));
         bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(colorTemperature));
+    }
+
+    public void adjustProperties(String adjustType, String properties) throws IOException {
+        bulb.sendCommand(YeelightCommand.generateAdjustCommand(adjustType, properties));
+    }
+
+    public void setName(String name) throws IOException {
+        bulb.sendCommand(YeelightCommand.generateSetNameCommand(name));
     }
 
     public void rainbowColorEffect(int transitionDuration) throws IOException {
