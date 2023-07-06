@@ -74,6 +74,7 @@ public class YeelightActions {
         }
     }
 
+
     public void pulseEffect(int pulseSpeed, int startBrightness, int endBrightness, int startColor, int endColor) throws IOException {
         String flowExpression = String.format("%d, 1, %d, %d, %d, 1, %d, %d", pulseSpeed, startColor, startBrightness, pulseSpeed, endColor, endBrightness);
         bulb.sendCommand(YeelightCommand.generateStartColorFlowCommand(0, 0, flowExpression));
@@ -140,5 +141,24 @@ public class YeelightActions {
         greenValue = Math.max(0, Math.min(255, greenValue));
         blueValue = Math.max(0, Math.min(255, blueValue));
         bulb.sendCommand(YeelightCommand.generateSetRGBCommand(redValue, greenValue, blueValue));
+    }
+
+    public void morseCodeSignal(String morseCode, int dotDuration) throws IOException {
+        for (char c : morseCode.toCharArray()) {
+            switch (c) {
+                case '.':
+                    bulb.sendCommand(YeelightCommand.generateSetBrightCommand(90));
+                    sleep(dotDuration);
+                    bulb.sendCommand(YeelightCommand.generateSetBrightCommand(10));
+                    sleep(dotDuration);
+                    break;
+                case '-':
+                    bulb.sendCommand(YeelightCommand.generateSetBrightCommand(90));
+                    sleep(3 * dotDuration);
+                    bulb.sendCommand(YeelightCommand.generateSetBrightCommand(10));
+                    sleep(dotDuration);
+                    break;
+            }
+        }
     }
 }
