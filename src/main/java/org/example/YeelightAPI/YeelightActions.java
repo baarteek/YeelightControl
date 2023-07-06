@@ -13,12 +13,43 @@ public class YeelightActions {
         this.bulb = bulb;
     }
 
+    public void turnOn() throws IOException {
+        bulb.sendCommand(YeelightCommand.generateTurnOnCommand());
+    }
+
+    public void turnOff() throws IOException {
+        bulb.sendCommand(YeelightCommand.generateTurnOffCommand());
+    }
+
+    public void changeTransitionEffect() {
+        String transitionEffect = YeelightCommand.getTransitionEffect();
+        if(transitionEffect.equals("smooth")) {
+            YeelightCommand.setTransitionEffect("sudden");
+        } else {
+            YeelightCommand.setTransitionEffect("smooth");
+        }
+    }
+
+    public void setDuration(int duration) {
+        YeelightCommand.setDuration(duration);
+    }
+
     public void setColor(int red, int green, int blue) throws IOException {
         red = Math.max(0, Math.min(255, red));
         green = Math.max(0, Math.min(255, green));
         blue = Math.max(0, Math.min(255, blue));
 
         bulb.sendCommand(YeelightCommand.generateSetRGBCommand(red, green, blue));
+    }
+
+    public void setBrightness(int brightness) throws IOException {
+        brightness = Math.max(0, Math.min(100, brightness));
+        bulb.sendCommand(YeelightCommand.generateSetBrightCommand(brightness));
+    }
+
+    public void setColorTemperature(int colorTemperature) throws IOException {
+        colorTemperature = Math.max(1700, Math.min(6500, colorTemperature));
+        bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(colorTemperature));
     }
 
     public void rainbowColorEffect(int transitionDuration) throws IOException {

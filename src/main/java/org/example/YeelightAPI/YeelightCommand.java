@@ -21,6 +21,10 @@ public class YeelightCommand {
         }
     }
 
+    public static String getTransitionEffect() {
+        return transitionEffect;
+    }
+
     public static String generateTurnOnCommand() {
         return String.format("{\"id\":1,\"method\":\"set_power\",\"params\":[\"on\", \"%s\", %d]}\r\n", transitionEffect, duration);
     }

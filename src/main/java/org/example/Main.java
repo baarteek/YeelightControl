@@ -16,7 +16,8 @@ public class Main {
         try {
             bulb.connect();
 
-            bulbActions.pulseEffect(1000, 10, 90, 4215, 477215);
+            bulbActions.setDuration(1000);
+            bulbActions.setColor(1, 200, 3);
 
             String response = bulb.readResponse();
             System.out.println(response);
