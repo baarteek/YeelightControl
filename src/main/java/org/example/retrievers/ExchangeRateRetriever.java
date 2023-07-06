@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ExchangeRateRetriever {
@@ -60,7 +59,6 @@ public class ExchangeRateRetriever {
             throw new IllegalAccessException("No rates avalilable in the provided JSON.");
         }
         JSONObject rateObject = ratesArray.getJSONObject(0);
-        double rate = rateObject.getDouble("mid");
-        return rate;
+        return rateObject.getDouble("mid");
     }
 }

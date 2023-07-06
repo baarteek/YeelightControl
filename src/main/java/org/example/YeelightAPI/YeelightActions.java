@@ -1,6 +1,7 @@
 package org.example.YeelightAPI;
 
 import org.example.Main;
+import org.example.retrievers.ExchangeRateRetriever;
 import org.example.retrievers.GoldPriceRetriever;
 
 import java.io.IOException;
@@ -12,7 +13,36 @@ public class YeelightActions {
         this.bulb = bulb;
     }
 
-    public void adjustBrightnessBasedOnGoldPrice() throws IOException {
+    public void setColor(int red, int green, int blue) throws IOException {
+        red = Math.max(0, Math.min(255, red));
+        green = Math.max(0, Math.min(255, green));
+        blue = Math.max(0, Math.min(255, blue));
+
+        bulb.sendCommand(YeelightCommand.generateSetRGBCommand(red, green, blue));
+    }
+
+    public void rainbowColorEffect(int transitionDuration) throws IOException {
+        int saturation = 100;
+        for(int hue = 0; hue < 360; hue+=5) {
+            bulb.sendCommand(YeelightCommand.generateSetHSVCommand(hue, saturation));
+            sleep(transitionDuration);
+        }
+    }
+
+    public void pulseEffect(int pulseSpeed, int startBrightness, int endBrightness, int startColor, int endColor) throws IOException {
+        String flowExpression = String.format("%d, 1, %d, %d, %d, 1, %d, %d", pulseSpeed, startColor, startBrightness, pulseSpeed, endColor, endBrightness);
+        bulb.sendCommand(YeelightCommand.generateStartColorFlowCommand(0, 0, flowExpression));
+    }
+
+    private void sleep(int duration) {
+        try {
+            Thread.sleep(duration);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void adjustBrightnessAndColorBasedOnGoldPrice() throws IOException {
         try {
             GoldPriceRetriever  goldPriceRetriever = new GoldPriceRetriever();
             double goldPrice = goldPriceRetriever.getGoldPrice();
@@ -20,11 +50,50 @@ public class YeelightActions {
             brightness = Math.max(1, Math.min(100, brightness));
 
             bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(3000));
-            bulb.sendCommand(YeelightCommand.generateSetColorCommand(255, 150, 0));
+            bulb.sendCommand(YeelightCommand.generateSetRGBCommand(255, 150, 0));
             bulb.sendCommand(YeelightCommand.generateSetBrightCommand(brightness));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setColorBasedOnEuroRate() {
+        ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
+        double euroRate = rateRetriever.getEuroExchangeRate();
+        setColorBasedOnExchangeRate(euroRate);
+    }
+
+    public void setColorBasedOnDollarRate() {
+        ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
+        double dollarRate = rateRetriever.getDollarExchangeRate();
+        setColorBasedOnExchangeRate(dollarRate);
+    }
+
+    public void setColorBasedOnBritishPoundRate() {
+        ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
+        double britishPoundRate = rateRetriever.getBritishPoundExchangeRate();
+        setColorBasedOnExchangeRate(britishPoundRate);
+    }
+
+    private void setColorBasedOnExchangeRate(double exchangeRate) {
+        try {
+            adjustColorBasedOnExchangeRate(exchangeRate);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void adjustColorBasedOnExchangeRate(double exchangeRate) throws IOException {
+        double minExchangeRate = 3;
+        double maxExchangeRate = 6;
+        double normalizedRate = (exchangeRate - minExchangeRate) / (maxExchangeRate - minExchangeRate);
+        int redValue = (int) ((1 - normalizedRate) * 255);
+        int greenValue = (int) (normalizedRate * 255);
+        int blueValue = 255 - Math.abs(redValue - greenValue);
+        redValue = Math.max(0, Math.min(255, redValue));
+        greenValue = Math.max(0, Math.min(255, greenValue));
+        blueValue = Math.max(0, Math.min(255, blueValue));
+        bulb.sendCommand(YeelightCommand.generateSetRGBCommand(redValue, greenValue, blueValue));
     }
 }

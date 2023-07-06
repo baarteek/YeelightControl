@@ -24,9 +24,14 @@ public class YeelightBulb {
     }
 
     public void sendCommand(String command) throws IOException {
-        writer.write(command);
-        writer.flush();
+        try {
+            writer.write(command);
+            writer.flush();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public String readResponse() throws IOException {
         return reader.readLine();

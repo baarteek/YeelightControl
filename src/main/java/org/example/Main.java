@@ -16,10 +16,7 @@ public class Main {
         try {
             bulb.connect();
 
-            bulb.sendCommand(YeelightCommand.generateTurnOnCommand());
-            bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(6000));
-            bulb.sendCommand(YeelightCommand.generateSetColorCommand(255, 0, 0));
-
+            bulbActions.pulseEffect(1000, 10, 90, 4215, 477215);
 
             String response = bulb.readResponse();
             System.out.println(response);

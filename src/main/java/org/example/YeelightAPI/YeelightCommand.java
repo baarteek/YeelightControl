@@ -29,9 +29,13 @@ public class YeelightCommand {
         return String.format("{\"id\":2,\"method\":\"set_power\",\"params\":[\"off\", \"%s\", %d]}\r\n", transitionEffect, duration);
     }
 
-    public static String generateSetColorCommand(int red, int green, int blue) {
+    public static String generateSetRGBCommand(int red, int green, int blue) {
         int rgb = red * 65536 + green * 256 + blue;
         return String.format("{\"id\":3, \"method\":\"set_rgb\", \"params\":[%d, \"%s\", %d]}\r\n", rgb, transitionEffect, duration);
+    }
+
+    public static String generateSetHSVCommand(int hue, int saturation) {
+        return String.format("{\"id\":9, \"method\":\"set_hsv\", \"params\":[%d, %d, \"%s\", %d]}\r\n", hue, saturation, transitionEffect, duration);
     }
 
     public static String generateSetBrightCommand(int bright) {
