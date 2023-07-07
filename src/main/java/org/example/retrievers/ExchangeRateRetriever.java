@@ -39,7 +39,7 @@ public class ExchangeRateRetriever {
         URL url = new URL(url_api);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        connection.setRequestProperty("Accept", "application/json\"");
+        connection.setRequestProperty("Accept", "application/json");
 
         if(connection.getResponseCode() != 200) {
             throw new RuntimeException("Field: HTTP error code: " + connection.getResponseCode());

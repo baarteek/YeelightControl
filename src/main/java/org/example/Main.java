@@ -3,8 +3,11 @@ package org.example;
 import org.example.YeelightAPI.YeelightActions;
 import org.example.YeelightAPI.YeelightBulb;
 import org.example.YeelightAPI.YeelightCommand;
+import org.example.model.Weather;
 import org.example.retrievers.ExchangeRateRetriever;
 import org.example.retrievers.GoldPriceRetriever;
+import org.example.retrievers.WeatherInfoRetriever;
+import org.example.retrievers.WeatherInfoRetriever;
 import org.example.utils.MorseCodeTranslator;
 import org.example.utils.MorseCodeTranslator;
 
@@ -18,10 +21,11 @@ public class Main {
         try {
             bulb.connect();
 
-            bulbActions.setColorRGB(0, 0, 255);
+            Weather weather = new Weather(50.7808, 22.8844);
+
             String morseCode = MorseCodeTranslator.textToMorseCode("sos");
-            System.out.println(morseCode);
             bulbActions.morseCodeSignal(morseCode, 400);
+
 
             String response = bulb.readResponse();
             System.out.println(response);
