@@ -23,8 +23,8 @@ public class Main {
 
             Weather weather = new Weather(50.7808, 22.8844);
 
-            String morseCode = MorseCodeTranslator.textToMorseCode("sos");
-            bulbActions.morseCodeSignal(morseCode, 400);
+            System.out.println(weather.getWindSpeed());
+            bulbActions.changeBulbColorBasedOnWindSpeed(44);
 
 
             String response = bulb.readResponse();

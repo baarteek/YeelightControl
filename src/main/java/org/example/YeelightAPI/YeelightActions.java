@@ -1,6 +1,5 @@
 package org.example.YeelightAPI;
 
-import org.example.Main;
 import org.example.retrievers.ExchangeRateRetriever;
 import org.example.retrievers.GoldPriceRetriever;
 
@@ -161,4 +160,68 @@ public class YeelightActions {
             }
         }
     }
+
+    public void setColorBasedOnTemperature(double temperature) throws IOException {
+        int red, blue;
+
+        if(temperature <= -10) {
+            blue = 255;
+            red = 0;
+        } else if (temperature >= 30) {
+            red = 255;
+            blue = 0;
+        } else {
+            double tempScale = (temperature + 10) / 40;
+            red = (int)(255 * tempScale);
+            blue = 255 - red;
+        }
+
+        setColorRGB(red, 0, blue);
+    }
+
+    public void changeLightBehaviorBasedOnWeatherCode(int weatherCode) {
+        try {
+            if (weatherCode == 0) {
+                setColorRGB(255, 255, 0); // Clear sky - Yellow
+            } else if (weatherCode >= 1 && weatherCode <= 3) {
+                setColorRGB(128, 128, 160); // Mainly clear, partly cloudy, and overcast - Gray
+            } else if (weatherCode == 45 || weatherCode == 48) {
+                setColorRGB(192, 192, 192); // Fog and depositing rime fog - Light Gray
+            } else if (weatherCode >= 51 && weatherCode <= 57) {
+                setColorRGB(0, 0, 128); // Drizzle and Freezing Drizzle - Blue
+            } else if (weatherCode >= 61 && weatherCode <= 67) {
+                setColorRGB(0, 0, 255); // Rain and Freezing Rain - Dark Blue
+            } else if (weatherCode >= 71 && weatherCode <= 77) {
+                setColorRGB(255, 255, 255); // Snow fall and Snow grains - White
+            } else if (weatherCode >= 80 && weatherCode <= 86) {
+                setColorRGB(128, 0, 0); // Rain showers and Snow showers - Dark Red
+            } else if (weatherCode == 95 || weatherCode >= 96) {
+                setColorRGB(255, 0, 0); // Thunderstorm and Thunderstorm with hail - Red
+            } else {
+                setColorRGB(255, 255, 255); // Unknown weather code - White
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeBulbColorBasedOnWindSpeed(double windSpeed) throws IOException {
+        double[] beaufortScale = new double[]{0.0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7, 45};
+
+        int index = (int)(Math.log(windSpeed / beaufortScale[1]) / Math.log(2));
+
+        int red, green, blue;
+        if (windSpeed > beaufortScale[13]) {
+            red = 255;
+            green = 0;
+            blue = 0;
+        } else {
+            red = 0;
+            green = (int) (255.0 * index / 10.0);
+            blue = (int) (255.0 * (10 - index) / 10.0);
+        }
+
+        setColorRGB(red, green, blue);
+    }
+
 }
