@@ -2,8 +2,10 @@ package org.example.YeelightAPI;
 
 import org.example.retrievers.ExchangeRateRetriever;
 import org.example.retrievers.GoldPriceRetriever;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class YeelightActions {
     private YeelightBulb bulb;
@@ -222,6 +224,13 @@ public class YeelightActions {
         }
 
         setColorRGB(red, green, blue);
+    }
+
+    public String getInfo(String... properties) throws IOException {
+        String command = YeelightCommand.generateGetPropertiesCommand(properties);
+        bulb.sendCommand(command);
+
+        return bulb.readResponse();
     }
 
 }

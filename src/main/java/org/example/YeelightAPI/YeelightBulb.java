@@ -4,16 +4,19 @@ import java.io.*;
 import java.net.*;
 
 public class YeelightBulb {
-    private String IP = "192.168.1.4";
     private final int PORT = 55443;
+    private String ip;
     private final int TIMEOUT = 5000;
     private Socket socket;
     private BufferedReader reader;
     private BufferedWriter writer;
 
+    public YeelightBulb(String ip) {
+        this.ip = ip;
+    }
 
     public void connect() throws IOException {
-        socket = new Socket(IP, PORT);
+        socket = new Socket(ip, PORT);
         socket.setSoTimeout(TIMEOUT);
         reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
         writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
@@ -38,10 +41,10 @@ public class YeelightBulb {
     }
 
     public void setIP(String ip) {
-        this.IP = ip;
+        this.ip = ip;
     }
 
     public String getIP() {
-        return IP;
+        return ip;
     }
 }

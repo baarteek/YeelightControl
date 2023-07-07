@@ -1,6 +1,9 @@
 package org.example.YeelightAPI;
 
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class YeelightCommand {
     private static String transitionEffect = "smooth";
     private static int duration = 500;
@@ -60,5 +63,12 @@ public class YeelightCommand {
 
     public static String generateStartColorFlowCommand(int count, int action, String flowExpression) {
         return String.format("{\"id\":8, \"method\":\"start_cf\", \"params\":[%d, %d, \"%s\"]}\r\n", count, action, flowExpression);
+    }
+
+    public static String generateGetPropertiesCommand(String... properties) {
+        String joinedProperties = Arrays.stream(properties)
+                .map(property -> "\"" + property + "\"")
+                .collect(Collectors.joining(","));
+        return String.format("{\"id\":10, \"method\":\"get_prop\", \"params\":[%s]}\r\n", joinedProperties);
     }
 }

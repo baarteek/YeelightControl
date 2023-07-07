@@ -2,33 +2,23 @@ package org.example;
 
 import org.example.YeelightAPI.YeelightActions;
 import org.example.YeelightAPI.YeelightBulb;
-import org.example.YeelightAPI.YeelightCommand;
-import org.example.model.Weather;
-import org.example.retrievers.ExchangeRateRetriever;
-import org.example.retrievers.GoldPriceRetriever;
-import org.example.retrievers.WeatherInfoRetriever;
-import org.example.retrievers.WeatherInfoRetriever;
-import org.example.utils.MorseCodeTranslator;
-import org.example.utils.MorseCodeTranslator;
-
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        YeelightBulb bulb = new YeelightBulb();
+        YeelightBulb bulb = new YeelightBulb("192.168.1.4");
         YeelightActions bulbActions = new YeelightActions(bulb);
 
         try {
             bulb.connect();
 
-            Weather weather = new Weather(50.7808, 22.8844);
-
-            System.out.println(weather.getWindSpeed());
-            bulbActions.changeBulbColorBasedOnWindSpeed(44);
+            bulbActions.setColorRGB(100, 200, 255);
 
 
             String response = bulb.readResponse();
             System.out.println(response);
+
+            System.out.println(bulbActions.getInfo("rgb", "power"));
 
             bulb.disconnect();
         } catch (IOException e) {
