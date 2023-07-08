@@ -1,7 +1,8 @@
-package org.example;
+package com.example.yeelightcontrol.api;
 
-import org.example.YeelightAPI.YeelightActions;
-import org.example.YeelightAPI.YeelightBulb;
+import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
+import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
+
 import java.io.IOException;
 
 public class Main {

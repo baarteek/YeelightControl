@@ -1,6 +1,6 @@
-package org.example.model;
+package com.example.yeelightcontrol.api.model;
 
-import org.example.retrievers.WeatherInfoRetriever;
+import com.example.yeelightcontrol.api.retrievers.WeatherInfoRetriever;
 
 import java.io.IOException;
 import java.time.Instant;

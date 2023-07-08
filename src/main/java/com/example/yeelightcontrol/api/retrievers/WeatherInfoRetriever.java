@@ -1,4 +1,4 @@
-package org.example.retrievers;
+package com.example.yeelightcontrol.api.retrievers;
 
 import com.google.javascript.jscomp.jarjar.com.google.common.reflect.TypeToken;
 import com.google.javascript.jscomp.jarjar.com.google.gson.Gson;

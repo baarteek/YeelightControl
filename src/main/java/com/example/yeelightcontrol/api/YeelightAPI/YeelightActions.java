@@ -1,11 +1,9 @@
-package org.example.YeelightAPI;
+package com.example.yeelightcontrol.api.YeelightAPI;
 
-import org.example.retrievers.ExchangeRateRetriever;
-import org.example.retrievers.GoldPriceRetriever;
-import org.json.JSONObject;
+import com.example.yeelightcontrol.api.retrievers.ExchangeRateRetriever;
+import com.example.yeelightcontrol.api.retrievers.GoldPriceRetriever;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class YeelightActions {
     private YeelightBulb bulb;
@@ -91,7 +89,7 @@ public class YeelightActions {
 
     public void adjustBrightnessAndColorBasedOnGoldPrice() throws IOException {
         try {
-            GoldPriceRetriever  goldPriceRetriever = new GoldPriceRetriever();
+            GoldPriceRetriever goldPriceRetriever = new GoldPriceRetriever();
             double goldPrice = goldPriceRetriever.getGoldPrice();
             int brightness = (int) (goldPrice / 500 * 100);
             brightness = Math.max(1, Math.min(100, brightness));

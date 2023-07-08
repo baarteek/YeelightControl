@@ -1,4 +1,4 @@
-package org.example.YeelightAPI;
+package com.example.yeelightcontrol.api.YeelightAPI;
 
 import java.io.*;
 import java.net.*;

@@ -1,4 +1,4 @@
-package org.example.retrievers;
+package com.example.yeelightcontrol.api.retrievers;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

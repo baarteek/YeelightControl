@@ -1,4 +1,4 @@
-package org.example.utils;
+package com.example.yeelightcontrol.api.utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,4 +61,5 @@ public class MorseCodeTranslator {
         }
         return textBuilder.toString().trim();
     }
+
 }

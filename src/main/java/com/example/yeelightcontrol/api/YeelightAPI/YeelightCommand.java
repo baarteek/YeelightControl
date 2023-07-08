@@ -1,5 +1,4 @@
-package org.example.YeelightAPI;
-
+package com.example.yeelightcontrol.api.YeelightAPI;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
