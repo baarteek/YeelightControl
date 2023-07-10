@@ -5,9 +5,9 @@ import java.net.*;
 
 public class YeelightBulb {
     private final int PORT = 55443;
-    private String name;
-    private String ip;
-    private final int TIMEOUT = 5000;
+    private final String name;
+    private final String ip;
+    private final int TIMEOUT = 1000;
     private Socket socket;
     private BufferedReader reader;
     private BufferedWriter writer;
@@ -17,18 +17,27 @@ public class YeelightBulb {
         this.ip = ip;
     }
 
-    public void connect() throws IOException {
-        socket = new Socket(ip, PORT);
-        socket.setSoTimeout(TIMEOUT);
-        reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-        writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+    public synchronized void connect() throws IOException {
+        if (socket == null || socket.isClosed()) {
+            socket = new Socket(ip, PORT);
+            socket.setSoTimeout(TIMEOUT);
+            reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+            writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+        }
     }
 
-    public void disconnect() throws IOException {
-        socket.close();
+    public synchronized void disconnect() throws IOException {
+        if (socket != null && !socket.isClosed()) {
+            socket.close();
+            reader.close();
+            writer.close();
+            socket = null;
+            reader = null;
+            writer = null;
+        }
     }
 
-    public void sendCommand(String command) throws IOException {
+    public synchronized void sendCommand(String command) throws IOException {
         try {
             writer.write(command);
             writer.flush();
@@ -37,13 +46,8 @@ public class YeelightBulb {
         }
     }
 
-
-    public String readResponse() throws IOException {
+    public synchronized String readResponse() throws IOException {
         return reader.readLine();
-    }
-
-    public void setIP(String ip) {
-        this.ip = ip;
     }
 
     public String getIP() {

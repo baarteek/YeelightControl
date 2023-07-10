@@ -15,17 +15,15 @@ public class DataValidator {
     public static boolean isNameValid(String name) {
         if(name != null && name.length() > 0 && name.length() <= 100) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public static boolean isIPValid(String ip) {
         if(ip != null) {
             Matcher matcher = pattern.matcher(ip);
             return matcher.matches();
-        } else {
-            return false;
         }
+        return false;
     }
 }

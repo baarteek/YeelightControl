@@ -20,7 +20,7 @@ public class DeviceData {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException();
             }
         }
     }
@@ -29,9 +29,9 @@ public class DeviceData {
         try (FileWriter fw = new FileWriter(filePath, true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            out.println(deviceName + "," + deviceIp);
+            out.println("Name: " + deviceName + ", IP: " + deviceIp);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -43,7 +43,7 @@ public class DeviceData {
                 devices.add(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return devices;
     }
@@ -51,9 +51,7 @@ public class DeviceData {
     public void removeDeviceData(String name, String ip) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(filePath));
         String lineToRemove = "Name: " + name + ", IP: " + ip;
-
         lines.remove(lineToRemove);
-
         Files.write(Paths.get(filePath), lines);
     }
 }

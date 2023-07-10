@@ -1,7 +1,10 @@
 package com.example.yeelightcontrol;
 
+import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
+import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
 import com.example.yeelightcontrol.api.utils.DeviceData;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
+import com.google.javascript.jscomp.jarjar.org.apache.tools.ant.Task;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,10 +23,12 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HelloController implements Initializable {
     private final String pathToDeviceData = "src/main/resources/com/example/yeelightcontrol/devices/devices.txt";
@@ -41,7 +46,7 @@ public class HelloController implements Initializable {
             if(devices.isEmpty()) {
                 setNoDeviceMessage();
             } else {
-                mainLabel.setText("Select a device");
+                setDeviceMessage();
                 addDevicesToVBox(devices);
             }
         } catch (Exception e) {
@@ -53,6 +58,11 @@ public class HelloController implements Initializable {
     private void setNoDeviceMessage() {
         mainLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
         mainLabel.setText("No devices saved. Click the plus to add a new device.");
+    }
+
+    private void setDeviceMessage() {
+        mainLabel.setFont(Font.font("System", FontWeight.BOLD, 25));
+        mainLabel.setText("Select a device");
     }
 
     private void addDevicesToVBox(List<String> devices) {
@@ -123,8 +133,44 @@ public class HelloController implements Initializable {
     protected void addNewDevice() throws IOException {
         Optional<Pair<String, String>> result = DialogHelper.showDeviceInputDialog();
         result.ifPresent(nameAndIp -> {
-            System.out.println("Name=" + nameAndIp.getKey() + ", IP=" + nameAndIp.getValue());
-            // tutaj można dodać kod, który wykorzysta wprowadzone dane
+            String name = nameAndIp.getKey();
+            String ip = nameAndIp.getValue();
+            if(connectToDevice(name, ip)) {
+                setDeviceMessage();
+                deviceData.appendDeviceData(name, ip);
+                addNewHBox(name, ip);
+            }
         });
+    }
+
+    private boolean connectToDevice(String name, String ip) {
+        YeelightBulb bulb = new YeelightBulb(name, ip);
+        YeelightActions action = new YeelightActions(bulb);
+
+        AtomicBoolean result = new AtomicBoolean(true);
+        javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<Void>() {
+            @Override
+            protected Void call() {
+                try {
+                    bulb.connect();
+                    action.setName(name);
+                    bulb.disconnect();
+                } catch (Exception e) {
+                    result.set(false);
+                }
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return result.get();
     }
 }
