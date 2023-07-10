@@ -6,11 +6,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeviceDataSaver {
-
+public class DeviceData {
     private String filePath;
 
-    public DeviceDataSaver(String filePath) {
+    public DeviceData(String filePath) {
         this.filePath = filePath;
         createFileIfNotExists();
     }
