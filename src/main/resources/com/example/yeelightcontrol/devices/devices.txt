@@ -1,6 +1,0 @@
-Name: Bulb1, IP: 192.168.1.4
-Name: Bulb2, IP: 192.168.1.5
-Name: Bulb3, IP: 192.168.1.6
-Name: Bulb4, IP: 192.168.1.7
-Name: Bulb5, IP: 192.168.1.8
-Name: Bulb6, IP: 192.168.1.9

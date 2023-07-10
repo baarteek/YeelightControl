@@ -17,10 +17,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -119,6 +121,10 @@ public class HelloController implements Initializable {
 
     @FXML
     protected void addNewDevice() throws IOException {
-        System.out.println("add new device");
+        Optional<Pair<String, String>> result = DialogHelper.showDeviceInputDialog();
+        result.ifPresent(nameAndIp -> {
+            System.out.println("Name=" + nameAndIp.getKey() + ", IP=" + nameAndIp.getValue());
+            // tutaj można dodać kod, który wykorzysta wprowadzone dane
+        });
     }
 }

@@ -1,0 +1,66 @@
+.dialog-pane {
+    -fx-background-color: #1b263b;
+}
+
+.dialog-pane .label {
+    -fx-text-fill: #ffffff;
+}
+
+.dialog-pane .button {
+    -fx-background-color: #8AC926;
+    -fx-text-fill: white;
+    -fx-min-width: 80px;
+    -fx-min-height: 40px;
+    -fx-max-width: 80px;
+    -fx-max-height: 40px;
+    -fx-font-size: 15px;
+    -fx-font-weight : bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #7AB815;
+    -fx-cursor: hand;
+}
+
+.dialog-pane .button:pressed {
+    -fx-background-color: #689E0B;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.dialog-pane .text-field {
+    -fx-background-color: #1b2940;
+    -fx-border-color: #324666;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+}
+
+.dialog-pane .text-field:hover {
+    -fx-background-color: #253959;
+    -fx-cursor: hand;
+}
+
+.dialog-pane .delete-button {
+    -fx-font-size: 15px;
+    -fx-background-color: #2d4873;
+    -fx-text-fill: white;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 12px;
+}
+
+.dialog-pane .delete-button:hover {
+    -fx-background-color: #732d39;
+}
+
+.dialog-pane .delete-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
