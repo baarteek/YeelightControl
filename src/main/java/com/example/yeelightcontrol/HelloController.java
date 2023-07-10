@@ -13,7 +13,7 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
-        YeelightBulb bulb = new YeelightBulb("192.168.1.4");
+        YeelightBulb bulb = new YeelightBulb("bulb", "192.168.1.4");
         YeelightActions actions = new YeelightActions(bulb);
 
         bulb.connect();

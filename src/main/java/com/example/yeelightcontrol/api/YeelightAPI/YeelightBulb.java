@@ -5,13 +5,15 @@ import java.net.*;
 
 public class YeelightBulb {
     private final int PORT = 55443;
+    private String name;
     private String ip;
     private final int TIMEOUT = 5000;
     private Socket socket;
     private BufferedReader reader;
     private BufferedWriter writer;
 
-    public YeelightBulb(String ip) {
+    public YeelightBulb(String name, String ip) {
+        this.name = name;
         this.ip = ip;
     }
 
@@ -46,5 +48,9 @@ public class YeelightBulb {
 
     public String getIP() {
         return ip;
+    }
+
+    public String getName() {
+        return name;
     }
 }
