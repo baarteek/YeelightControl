@@ -135,11 +135,35 @@ public class HelloController implements Initializable {
         result.ifPresent(nameAndIp -> {
             String name = nameAndIp.getKey();
             String ip = nameAndIp.getValue();
-            if(connectToDevice(name, ip)) {
-                setDeviceMessage();
-                deviceData.appendDeviceData(name, ip);
-                addNewHBox(name, ip);
-            }
+            javafx.concurrent.Task<Boolean> connectTask = new javafx.concurrent.Task<Boolean>() {
+                @Override
+                protected Boolean call() {
+                    return connectToDevice(name, ip);
+                }
+            };
+            DialogHelper.showProgressDialog();
+            new Thread(connectTask).start();
+
+            connectTask.setOnSucceeded(e -> {
+                DialogHelper.closeProgressDialog();
+
+                boolean isConnected = connectTask.getValue();
+                if(isConnected) {
+                    setDeviceMessage();
+                    deviceData.appendDeviceData(name, ip);
+                    addNewHBox(name, ip);
+                } else {
+                    DialogHelper.showInformationDialog("Connection failed",
+                            "Failed to connect to the device. Please check the device's IP address and try again.");
+                }
+            });
+
+            connectTask.setOnFailed(e -> {
+                DialogHelper.closeProgressDialog();
+
+                DialogHelper.showInformationDialog("Error",
+                        "An error occurred while trying to connect to the device. Please try again.");
+            });
         });
     }
 

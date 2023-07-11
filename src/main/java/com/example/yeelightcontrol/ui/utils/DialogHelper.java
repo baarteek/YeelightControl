@@ -1,14 +1,20 @@
 package com.example.yeelightcontrol.ui.utils;
 
+import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.util.Optional;
 
 public class DialogHelper {
     private static final String pathToCssFile = "/com/example/yeelightcontrol/css/dialog.css";
+    private static Stage dialogStage;
 
     public static void showInformationDialog(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -79,5 +85,40 @@ public class DialogHelper {
         });
 
         return dialog.showAndWait();
+    }
+
+    public static void showProgressDialog() {
+        Platform.runLater(() -> {
+            dialogStage = new Stage();
+            dialogStage.setMinWidth(150);
+            dialogStage.setTitle("Connecting...");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setResizable(false);
+            dialogStage.setOnCloseRequest(event -> event.consume());
+
+            ProgressIndicator progressIndicator = new ProgressIndicator();
+            progressIndicator.getStyleClass().add("dialog-progress-indicator");
+            progressIndicator.setProgress(-1f);
+
+            VBox vBox = new VBox();
+            vBox.getStyleClass().add("dialog-vbox");
+            vBox.setAlignment(Pos.CENTER);
+            vBox.setPadding(new Insets(15));
+            vBox.getChildren().add(progressIndicator);
+
+            Scene scene = new Scene(vBox);
+            scene.getStylesheets().add(DialogHelper.class.getResource(pathToCssFile).toExternalForm());
+            dialogStage.setScene(scene);
+
+            dialogStage.show();
+        });
+    }
+
+    public static void closeProgressDialog() {
+        Platform.runLater(() -> {
+            if (dialogStage != null) {
+                dialogStage.close();
+            }
+        });
     }
 }
