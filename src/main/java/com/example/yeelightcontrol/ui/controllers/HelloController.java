@@ -3,7 +3,9 @@ package com.example.yeelightcontrol.ui.controllers;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
 import com.example.yeelightcontrol.api.utils.DeviceData;
+import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
+import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
 import com.google.javascript.jscomp.jarjar.org.apache.tools.ant.Task;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -20,6 +22,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.io.IOException;
@@ -32,7 +35,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HelloController implements Initializable {
     private final String pathToDeviceData = "src/main/resources/com/example/yeelightcontrol/devices/devices.txt";
+    private final String pathToMainViewFxml = "/com/example/yeelightcontrol/fxml/main-view.fxml";
+    private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private DeviceData deviceData;
+    private Stage stage;
     @FXML
     private Label mainLabel;
     @FXML
@@ -103,7 +109,11 @@ public class HelloController implements Initializable {
 
         deviceHBox.getChildren().addAll(nameLabel, spacer1, ipLabel, spacer2, delButton);
         deviceHBox.setOnMouseClicked(event -> {
-            System.out.println("clicked hbox");
+            DeviceInfo.name = name;
+            DeviceInfo.ip = ip;
+            stage = (Stage) nameLabel.getScene().getWindow();
+            SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+            sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
         });
         devicesVBox.getChildren().add(deviceHBox);
     }

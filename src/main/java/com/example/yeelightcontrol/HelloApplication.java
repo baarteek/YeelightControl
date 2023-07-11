@@ -12,6 +12,7 @@ public class HelloApplication extends Application {
     private final String pathToHelloView = "/com/example/yeelightcontrol/fxml/hello-view.fxml";
     private final String pathToIcon = "/com/example/yeelightcontrol/icons/bulb.png";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(pathToHelloView));

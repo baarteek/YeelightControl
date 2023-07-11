@@ -230,5 +230,4 @@ public class YeelightActions {
 
         return bulb.readResponse();
     }
-
 }
