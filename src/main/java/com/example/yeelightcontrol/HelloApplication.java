@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(pathToHelloView));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(pathToHelloView));
         Scene scene = new Scene(fxmlLoader.load(), 500, 700);
         scene.getStylesheets().add(getClass().getResource(pathToCssFile).toExternalForm());
         stage.setResizable(false);

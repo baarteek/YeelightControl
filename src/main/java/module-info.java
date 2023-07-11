@@ -5,6 +5,6 @@ module com.example.yeelightcontrol {
     requires closure.compiler.v20210601;
 
 
-    opens com.example.yeelightcontrol to javafx.fxml;
+    opens com.example.yeelightcontrol.ui.controllers to javafx.fxml;
     exports com.example.yeelightcontrol;
 }

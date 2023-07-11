@@ -1,4 +1,4 @@
-package com.example.yeelightcontrol;
+package com.example.yeelightcontrol.ui.controllers;
 
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
@@ -130,7 +130,7 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    protected void addNewDevice() throws IOException {
+    protected void addNewDevice() {
         Optional<Pair<String, String>> result = DialogHelper.showDeviceInputDialog();
         result.ifPresent(nameAndIp -> {
             String name = nameAndIp.getKey();
@@ -188,13 +188,11 @@ public class HelloController implements Initializable {
 
         Thread thread = new Thread(task);
         thread.start();
-
         try {
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         return result.get();
     }
 }
