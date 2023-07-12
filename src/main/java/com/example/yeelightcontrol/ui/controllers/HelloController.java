@@ -3,6 +3,7 @@ package com.example.yeelightcontrol.ui.controllers;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
 import com.example.yeelightcontrol.api.utils.DeviceData;
+import com.example.yeelightcontrol.ui.utils.DeviceConnector;
 import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
 import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
@@ -90,33 +91,75 @@ public class HelloController implements Initializable {
         return new String[]{name, ip};
     }
 
-
-    private void addNewHBox(String name, String ip) {
+    private HBox createDeviceHBox() {
         HBox deviceHBox = new HBox();
         deviceHBox.getStyleClass().add("addedDevices");
+        VBox.setMargin(deviceHBox, new Insets(0, 0, 5, 0));
+        return deviceHBox;
+    }
 
-        Label nameLabel = new Label(name);
-        Label ipLabel = new Label(ip);
+    private void addNewHBox(String name, String ip) {
+        HBox deviceHBox = createDeviceHBox();
+
+        Label nameLabel = createLabel(name);
+        Label ipLabel = createLabel(ip);
 
         Button delButton = createDelButton(deviceHBox, name, ip);
 
-        Region spacer1 = new Region();
-        Region spacer2 = new Region();
-
-        HBox.setHgrow(spacer1, Priority.ALWAYS);
-        HBox.setHgrow(spacer2, Priority.ALWAYS);
-        VBox.setMargin(deviceHBox, new Insets(0, 0, 5, 0));
+        Region spacer1 = createSpacer();
+        Region spacer2 = createSpacer();
 
         deviceHBox.getChildren().addAll(nameLabel, spacer1, ipLabel, spacer2, delButton);
-        deviceHBox.setOnMouseClicked(event -> {
-            DeviceInfo.name = name;
-            DeviceInfo.ip = ip;
-            stage = (Stage) nameLabel.getScene().getWindow();
-            SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
-            sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
-        });
+        deviceHBox.setOnMouseClicked(event -> connectDevice(name, ip, nameLabel));
+
+        addDeviceHBoxToView(deviceHBox);
+    }
+
+    private Label createLabel(String text) {
+        return new Label(text);
+    }
+
+    private Region createSpacer() {
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        return spacer;
+    }
+
+    private void addDeviceHBoxToView(HBox deviceHBox) {
         devicesVBox.getChildren().add(deviceHBox);
     }
+
+    private void connectDevice(String name, String ip, Label nameLabel) {
+        YeelightBulb bulb = new YeelightBulb(name, ip);
+        javafx.concurrent.Task<Boolean> connectionTask = new javafx.concurrent.Task<Boolean>()  {
+            @Override
+            protected Boolean call() throws Exception {
+                Platform.runLater(DialogHelper::showProgressDialog);
+                boolean result = DeviceConnector.connectAndSetName(bulb);
+                Platform.runLater(DialogHelper::closeProgressDialog);
+                return result;
+            }
+        };
+
+        new Thread(connectionTask).start();
+
+        connectionTask.setOnSucceeded(e -> {
+            if(connectionTask.getValue()) {
+                DeviceInfo.name = name;
+                DeviceInfo.ip = ip;
+                DeviceInfo.bulb = bulb;
+                stage = (Stage) nameLabel.getScene().getWindow();
+                SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+                sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
+            }
+        });
+
+        connectionTask.setOnFailed(e -> {
+            Platform.runLater(DialogHelper::closeProgressDialog);
+            DialogHelper.showErrorDialog("Error", "An error occurred while trying to connect to the device. Please try again.");
+        });
+    }
+
 
     private Button createDelButton(HBox deviceHBox, String name, String ip) {
         Button delButton = new Button("DEL");
@@ -148,7 +191,7 @@ public class HelloController implements Initializable {
             javafx.concurrent.Task<Boolean> connectTask = new javafx.concurrent.Task<Boolean>() {
                 @Override
                 protected Boolean call() {
-                    return connectToDevice(name, ip);
+                    return DeviceConnector.connectAndSetName(new YeelightBulb(name, ip));
                 }
             };
             DialogHelper.showProgressDialog();
@@ -175,34 +218,5 @@ public class HelloController implements Initializable {
                         "An error occurred while trying to connect to the device. Please try again.");
             });
         });
-    }
-
-    private boolean connectToDevice(String name, String ip) {
-        YeelightBulb bulb = new YeelightBulb(name, ip);
-        YeelightActions action = new YeelightActions(bulb);
-
-        AtomicBoolean result = new AtomicBoolean(true);
-        javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<Void>() {
-            @Override
-            protected Void call() {
-                try {
-                    bulb.connect();
-                    action.setName(name);
-                    bulb.disconnect();
-                } catch (Exception e) {
-                    result.set(false);
-                }
-                return null;
-            }
-        };
-
-        Thread thread = new Thread(task);
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return result.get();
     }
 }

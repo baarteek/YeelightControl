@@ -1,5 +1,7 @@
 package com.example.yeelightcontrol.ui.controllers;
 
+import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
+import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
 import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
 import javafx.fxml.FXML;
@@ -15,6 +17,8 @@ import java.util.ResourceBundle;
 public class MainViewController implements Initializable {
     private final String pathToHelloViewFxml = "/com/example/yeelightcontrol/fxml/hello-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
+    private YeelightBulb bulb;
+    private YeelightActions bulbActions;
     @FXML
     private Label nameDeviceLabel;
     @FXML
@@ -26,6 +30,8 @@ public class MainViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameDeviceLabel.setText(DeviceInfo.name);
         addressIPLabel.setText(DeviceInfo.ip);
+        this.bulb = DeviceInfo.bulb;
+        bulbActions = new YeelightActions(bulb);
     }
 
     public void backToHelloWorld() {
