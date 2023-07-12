@@ -51,32 +51,182 @@
       <Separator prefWidth="200.0" />
       <VBox prefHeight="585.0" prefWidth="460.0">
          <children>
-            <HBox prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/effects.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Color Effects">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/effects.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/morse-code.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Morse Code">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/morse-code.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/sun.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Weather">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/sun.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/exchange.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Exchange Rates">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/exchange.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/gold.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Gold Price">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/gold.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/colors.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Device Adjustments">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/colors.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -91,7 +241,7 @@
                         <Image url="@../icons/turn-off.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="10.0" right="20.0" />
+                        <Insets left="15.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="299.0" text="Power Toggle">

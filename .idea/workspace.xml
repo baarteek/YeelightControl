@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a3bfa5e-588e-4198-8260-c1acd271a813" name="Changes" comment="added support for bulb behavior based on gold price">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/utils/DeviceInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/utils/SceneSwitcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/settings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/colors.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/effects.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/exchange.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/morse-code.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/sun.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/YeelightAPI/YeelightActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/YeelightAPI/YeelightActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/devices/devices.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/devices/devices.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
