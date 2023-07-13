@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class MainViewController implements Initializable {
     private final String pathToHelloViewFxml = "/com/example/yeelightcontrol/fxml/hello-view.fxml";
+    private final String pathToExchangeRatesViewFxml = "/com/example/yeelightcontrol/fxml/exchange-rates-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
     private YeelightActions bulbActions;
@@ -116,5 +117,11 @@ public class MainViewController implements Initializable {
             DialogHelper.showErrorDialog("Gold Price Error", "Error getting gold price.");
         }
         return 0;
+    }
+
+    public void switchToExchangeRatesView() {
+        Stage stage = (Stage) nameDeviceLabel.getScene().getWindow();
+        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        sceneSwitcher.switchToScene(pathToExchangeRatesViewFxml, pathToCssFile);
     }
 }
