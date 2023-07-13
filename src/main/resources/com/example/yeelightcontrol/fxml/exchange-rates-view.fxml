@@ -43,5 +43,99 @@
             </padding>
         </HBox>
         <Separator prefWidth="200.0" />
+      <VBox prefHeight="586.0" prefWidth="460.0">
+         <children>
+            <HBox alignment="CENTER" onMouseClicked="#dollarExchangeRateClicked" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/dollar.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="394.0" text="Dollar Exchange Rate">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/dollar.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#euroExchangeRateClicked" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/euro.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="394.0" text="Euro Exchange Rate">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/euro.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#britishPoundExchangeRateClicked" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/pound.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="394.0" text="British Pound Exchange Rate">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
+                     <image>
+                        <Image url="@../icons/pound.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
     </children>
 </VBox>
