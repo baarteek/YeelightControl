@@ -8,7 +8,7 @@ import java.net.ConnectException;
 
 public class Main {
     public static void main(String[] args) {
-        YeelightBulb bulb = new YeelightBulb("Bulb", "192.168.1.5");
+        YeelightBulb bulb = new YeelightBulb("Bulb", "192.168.1.4");
         YeelightActions bulbActions = new YeelightActions(bulb);
 
         try {
@@ -17,8 +17,8 @@ public class Main {
             bulbActions.setColorRGB(0, 255, 255);
 
 
-            String response = bulb.readResponse();
-            System.out.println(response);
+            //String response = bulb.readResponse();
+            //System.out.println(response);
 
             System.out.println(bulbActions.getInfo("rgb", "power"));
 

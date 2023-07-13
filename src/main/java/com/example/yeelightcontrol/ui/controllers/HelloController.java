@@ -151,6 +151,7 @@ public class HelloController implements Initializable {
                 stage = (Stage) nameLabel.getScene().getWindow();
                 SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
                 sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
+
             }
         });
 
