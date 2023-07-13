@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 public class MainViewController implements Initializable {
     private final String pathToHelloViewFxml = "/com/example/yeelightcontrol/fxml/hello-view.fxml";
     private final String pathToExchangeRatesViewFxml = "/com/example/yeelightcontrol/fxml/exchange-rates-view.fxml";
+    private final String pathToMorseCodeViewFxml = "/com/example/yeelightcontrol/fxml/morse-code-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
     private YeelightActions bulbActions;
@@ -119,9 +120,17 @@ public class MainViewController implements Initializable {
         return 0;
     }
 
-    public void switchToExchangeRatesView() {
+    public void switchToExchangeRateView() {
+        switchToAnotherScene(pathToExchangeRatesViewFxml);
+    }
+
+    public void switchToMorseCodeView() {
+        switchToAnotherScene(pathToMorseCodeViewFxml);
+    }
+
+    private void switchToAnotherScene(String pathToView) {
         Stage stage = (Stage) nameDeviceLabel.getScene().getWindow();
         SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
-        sceneSwitcher.switchToScene(pathToExchangeRatesViewFxml, pathToCssFile);
+        sceneSwitcher.switchToScene(pathToView, pathToCssFile);
     }
 }
