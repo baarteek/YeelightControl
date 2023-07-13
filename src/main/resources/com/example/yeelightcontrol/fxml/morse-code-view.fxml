@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -47,19 +48,51 @@
         <Separator prefWidth="200.0" />
       <VBox prefHeight="584.0" prefWidth="460.0">
          <children>
+            <HBox alignment="CENTER" prefHeight="97.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="98.0" prefWidth="458.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="457.0" text="Enter the interval between a single beep in milliseconds." />
+                        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="458.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Slider fx:id="durationSlider" blockIncrement="100.0" majorTickUnit="600.0" max="2000.0" min="200.0" minorTickCount="5" prefHeight="14.0" prefWidth="318.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="400.0">
+                                 <HBox.margin>
+                                    <Insets left="60.0" />
+                                 </HBox.margin>
+                              </Slider>
+                              <Label fx:id="durationLabel" prefHeight="18.0" prefWidth="118.0" text="50 ms">
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" left="30.0" right="25.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="128.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <VBox alignment="CENTER" prefHeight="98.0" prefWidth="458.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="457.0" text="Enter the Enter the text that will be displayed in Morse Code." />
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="457.0" text="Enter the text that will be displayed in Morse Code." />
                         <HBox alignment="CENTER" prefHeight="59.0" prefWidth="458.0">
                            <children>
-                              <TextField prefHeight="26.0" prefWidth="313.0" styleClass="normalTextField">
+                              <TextField fx:id="displayMorseCodeTextField" prefHeight="26.0" prefWidth="313.0" styleClass="normalTextField">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" styleClass="normalButton" text="Display">
+                              <Button mnemonicParsing="false" onAction="#displayMorseCodeOnDevice" styleClass="normalButton" text="Display">
                                  <HBox.margin>
                                     <Insets right="20.0" />
                                  </HBox.margin>
@@ -83,12 +116,12 @@
                         <Label alignment="CENTER" prefHeight="36.0" prefWidth="457.0" text="Enter the text you want to translate into Morse Code" />
                         <HBox alignment="CENTER" prefHeight="59.0" prefWidth="458.0">
                            <children>
-                              <TextField prefHeight="26.0" prefWidth="313.0" styleClass="normalTextField">
+                              <TextField fx:id="translateToCodeMorseTextField" prefHeight="26.0" prefWidth="313.0" styleClass="normalTextField">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" styleClass="normalButton" text="Translate">
+                              <Button mnemonicParsing="false" onAction="#translateToMorseCode" styleClass="normalButton" text="Translate">
                                  <HBox.margin>
                                     <Insets right="20.0" />
                                  </HBox.margin>
@@ -112,12 +145,12 @@
                         <Label alignment="CENTER" prefHeight="36.0" prefWidth="457.0" text="Enter the Morse Code you want to translate to normal letters" />
                         <HBox alignment="CENTER" prefHeight="59.0" prefWidth="458.0">
                            <children>
-                              <TextField prefHeight="26.0" prefWidth="313.0" styleClass="normalTextField">
+                              <TextField fx:id="translateToLettersTextField" prefHeight="26.0" prefWidth="313.0" styleClass="normalTextField">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" styleClass="normalButton" text="Translate">
+                              <Button mnemonicParsing="false" onAction="#translateMorseCodeToLetters" styleClass="normalButton" text="Translate">
                                  <HBox.margin>
                                     <Insets right="20.0" />
                                  </HBox.margin>
