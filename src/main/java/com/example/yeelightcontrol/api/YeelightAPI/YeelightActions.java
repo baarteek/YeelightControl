@@ -88,7 +88,6 @@ public class YeelightActions {
     }
 
     public void adjustBrightnessAndColorBasedOnGoldPrice() throws IOException {
-        try {
             GoldPriceRetriever goldPriceRetriever = new GoldPriceRetriever();
             double goldPrice = goldPriceRetriever.getGoldPrice();
             int brightness = (int) (goldPrice / 500 * 100);
@@ -97,36 +96,28 @@ public class YeelightActions {
             bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(3000));
             bulb.sendCommand(YeelightCommand.generateSetRGBCommand(255, 150, 0));
             bulb.sendCommand(YeelightCommand.generateSetBrightCommand(brightness));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    public void setColorBasedOnEuroRate() {
+    public void setColorBasedOnEuroRate() throws IOException {
         ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
         double euroRate = rateRetriever.getEuroExchangeRate();
         setColorBasedOnExchangeRate(euroRate);
     }
 
-    public void setColorBasedOnDollarRate() {
+    public void setColorBasedOnDollarRate() throws IOException {
         ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
         double dollarRate = rateRetriever.getDollarExchangeRate();
         setColorBasedOnExchangeRate(dollarRate);
     }
 
-    public void setColorBasedOnBritishPoundRate() {
+    public void setColorBasedOnBritishPoundRate() throws IOException {
         ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
         double britishPoundRate = rateRetriever.getBritishPoundExchangeRate();
         setColorBasedOnExchangeRate(britishPoundRate);
     }
 
-    private void setColorBasedOnExchangeRate(double exchangeRate) {
-        try {
-            adjustColorBasedOnExchangeRate(exchangeRate);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void setColorBasedOnExchangeRate(double exchangeRate) throws IOException {
+        adjustColorBasedOnExchangeRate(exchangeRate);
     }
 
     private void adjustColorBasedOnExchangeRate(double exchangeRate) throws IOException {

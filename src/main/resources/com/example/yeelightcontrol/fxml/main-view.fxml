@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="700.0" minWidth="500.0" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.yeelightcontrol.ui.controllers.MainViewController">
+<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="700.0" minWidth="500.0" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.yeelightcontrol.ui.controllers.MainViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -172,7 +172,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#setColorBasedOnGoldPrice" prefHeight="80.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
                      <image>

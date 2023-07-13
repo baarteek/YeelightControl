@@ -2,6 +2,7 @@ package com.example.yeelightcontrol.ui.controllers;
 
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
+import com.example.yeelightcontrol.api.retrievers.GoldPriceRetriever;
 import com.example.yeelightcontrol.ui.utils.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -86,5 +87,34 @@ public class MainViewController implements Initializable {
 
     public void powerToggleDeviceClicked() {
         powerToggleButton.fire();
+    }
+
+    public void setColorBasedOnGoldPrice() {
+        trySetColorBasedOnGoldPrice();
+        showGoldPrice();
+    }
+
+    private void trySetColorBasedOnGoldPrice() {
+        try {
+            bulbActions.adjustBrightnessAndColorBasedOnGoldPrice();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Gold Price Error", "Error while setting device parameters.");
+        }
+    }
+
+    private void showGoldPrice() {
+        double goldPrice = getGoldPrice();
+        String message = "Today's gold price is: " + goldPrice + " PLN per gram.\n\nThe color of the device was established based on the price of gold.";
+        DialogHelper.showInformationDialog("Gold Price", message);
+    }
+
+    private double getGoldPrice() {
+        GoldPriceRetriever goldPrice = new GoldPriceRetriever();
+        try {
+            return goldPrice.getGoldPrice();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Gold Price Error", "Error getting gold price.");
+        }
+        return 0;
     }
 }

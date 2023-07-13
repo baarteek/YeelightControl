@@ -2,6 +2,7 @@ package com.example.yeelightcontrol.api;
 
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
+import com.example.yeelightcontrol.api.retrievers.GoldPriceRetriever;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -14,13 +15,10 @@ public class Main {
         try {
             bulb.connect();
 
-            bulbActions.setColorRGB(0, 255, 255);
+            bulbActions.setColorRGB(0,255,0);
 
-
-            //String response = bulb.readResponse();
-            //System.out.println(response);
-
-            System.out.println(bulbActions.getInfo("rgb", "power"));
+            String response = bulb.readResponse();
+            System.out.println(response);
 
             bulb.disconnect();
         }catch (ConnectException ce) {
