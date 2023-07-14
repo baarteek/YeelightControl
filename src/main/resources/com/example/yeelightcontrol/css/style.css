@@ -144,3 +144,35 @@
       -fx-background-color: #1c2f4d;
       -fx-cursor: text;
   }
+
+  .colorPicker {
+      -fx-background-color: #142033;
+      -fx-border-color: #324666;
+      -fx-border-width: 2px;
+      -fx-border-radius: 15px;
+      -fx-background-radius: 15px;
+      -fx-padding: 10px;
+      -fx-font-size: 12px;
+      -fx-text-fill: #ffffff;
+  }
+
+  .colorPicker:hover {
+      -fx-background-color: #1c2f4d;
+      -fx-cursor: hand;
+  }
+
+  .colorPicker .color-box {
+      -fx-background-color: derive(-fx-color,30%);
+      -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0.0, 0, 2);
+      -fx-padding: 2;
+  }
+
+  .colorPicker .color-box:pressed {
+      -fx-background-color: derive(-fx-color,-30%);
+  }
+
+  .colorPicker .icon {
+      -fx-background-color: derive(-fx-color,-30%);
+      -fx-padding: 2;
+  }
+
