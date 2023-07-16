@@ -20,8 +20,7 @@ public class YeelightActions {
         bulb.sendCommand(YeelightCommand.generateTurnOffCommand());
     }
 
-    public void changeTransitionEffect() {
-        String transitionEffect = YeelightCommand.getTransitionEffect();
+    public void changeTransitionEffect(String transitionEffect) {
         if(transitionEffect.equals("smooth")) {
             YeelightCommand.setTransitionEffect("sudden");
         } else {

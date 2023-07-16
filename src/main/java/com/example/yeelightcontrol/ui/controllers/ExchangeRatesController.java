@@ -115,7 +115,7 @@ public class ExchangeRatesController implements Initializable {
     private void showBritishPoundExchangeRate() {
         ExchangeRateRetriever rateRetriever = new ExchangeRateRetriever();
         double britishPoundRate = rateRetriever.getBritishPoundExchangeRate();
-        String message = "Today's british pound exchange rate is " + britishPoundRate + " PLN.\n\nThe color of the device has been changed based on the Euro rate.";
+        String message = "Today's british pound exchange rate is " + britishPoundRate + " PLN.\n\nThe color of the device has been changed based on the British Pound rate.";
         DialogHelper.showInformationDialog("British Pound Exchange Rate", message);
     }
 }
