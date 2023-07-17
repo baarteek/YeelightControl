@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a3bfa5e-588e-4198-8260-c1acd271a813" name="Changes" comment="added support for bulb behavior based on gold price">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/WeatherController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/weather-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/temperature.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/icons/wind.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/retrievers/WeatherInfoRetriever.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/retrievers/WeatherInfoRetriever.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
