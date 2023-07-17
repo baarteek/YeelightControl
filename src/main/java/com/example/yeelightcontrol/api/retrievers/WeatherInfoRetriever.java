@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.lang.runtime.ObjectMethods;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -26,8 +27,11 @@ public class WeatherInfoRetriever {
         }
     }
 
-    private String createURL(double latitude, double longitude) {
-        return String.format("https://api.open-meteo.com/v1/forecast?latitude=%.6f&longitude=%.6f&current_weather=true&timezone=Europe%%2FBerlin&forecast_days=1", latitude, longitude);
+    public String createURL(double latitude, double longitude) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.######");
+        String latitudeStr = decimalFormat.format(latitude).replace(",", ".");
+        String longitudeStr = decimalFormat.format(longitude).replace(",", ".");
+        return String.format("https://api.open-meteo.com/v1/forecast?latitude=%s&longitude=%s&current_weather=true&forecast_days=1", latitudeStr, longitudeStr);
     }
 
     private boolean areCoordinatesValid(double latitude, double longitude) {
