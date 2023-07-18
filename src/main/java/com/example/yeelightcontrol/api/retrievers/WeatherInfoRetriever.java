@@ -20,11 +20,7 @@ public class WeatherInfoRetriever {
     private String API_URL;
 
     public WeatherInfoRetriever(double latitude, double longitude) {
-        if(!areCoordinatesValid(latitude, longitude)) {
-            throw new IllegalArgumentException("Invalid coordinates. Latitude should be between -90 and 90, longitude should be between -180 and 180.");
-        } else {
             API_URL = createURL(latitude, longitude);
-        }
     }
 
     public String createURL(double latitude, double longitude) {
@@ -32,13 +28,6 @@ public class WeatherInfoRetriever {
         String latitudeStr = decimalFormat.format(latitude).replace(",", ".");
         String longitudeStr = decimalFormat.format(longitude).replace(",", ".");
         return String.format("https://api.open-meteo.com/v1/forecast?latitude=%s&longitude=%s&current_weather=true&forecast_days=1", latitudeStr, longitudeStr);
-    }
-
-    private boolean areCoordinatesValid(double latitude, double longitude) {
-        if (latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
-            return false;
-        }
-        return true;
     }
 
     public Map<String, String> getWeatherInfoMap() throws IOException {

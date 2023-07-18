@@ -87,6 +87,39 @@ public class DialogHelper {
         return dialog.showAndWait();
     }
 
+    public static Optional<Pair<String, String>> showWindowForEnteringCoordinate() {
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.getDialogPane().getStylesheets().add(DialogHelper.class.getResource(pathToCssFile).toExternalForm());
+        dialog.setTitle("Enter geographical coordinates");
+
+        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
+
+        TextField latitudeField = new TextField();
+        latitudeField.setPromptText("Latitude: ");
+        TextField longitudeField = new TextField();
+        longitudeField.setPromptText("Longitude: ");
+
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        vbox.getChildren().addAll(new Label("Latitude:"), latitudeField, new Label("Longitude:"), longitudeField);
+        vbox.getStyleClass().add("addedDevices");
+        dialog.getDialogPane().setContent(vbox);
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == okButtonType) {
+                if(DataValidator.areCoordinatesValid(latitudeField.getText(), longitudeField.getText())) {
+                    return new Pair<>(latitudeField.getText(), longitudeField.getText());
+                } else {
+                    showInformationDialog("Incorrect data", "Invalid geographic coordinates entered.");
+                }
+            }
+            return null;
+        });
+
+        return dialog.showAndWait();
+    }
+
     public static void showProgressDialog() {
         Platform.runLater(() -> {
             dialogStage = new Stage();

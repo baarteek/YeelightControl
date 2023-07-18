@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -45,7 +46,28 @@
         <Separator prefWidth="200.0" />
         <VBox prefHeight="584.0" prefWidth="460.0">
             <children>
-                <HBox fx:id="weatherHBox" alignment="CENTER" prefHeight="90.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox fx:id="weatherHBox1" alignment="CENTER" onMouseClicked="#setColorOfDeviceBasedOnWeather" prefHeight="147.0" prefWidth="460.0" styleClass="addedDevices">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="90.0" prefWidth="472.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="391.0" text="Click the button to enter the geographical coordinates for which you want to get the weather" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#setWeatherInfo" prefHeight="34.0" prefWidth="140.0" styleClass="normalButton" text="Set">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+                <HBox fx:id="weatherHBox" alignment="CENTER" disable="true" onMouseClicked="#setColorOfDeviceBasedOnWeather" prefHeight="90.0" prefWidth="460.0" styleClass="addedDevices">
                     <VBox.margin>
                         <Insets bottom="5.0" />
                     </VBox.margin>
@@ -73,7 +95,7 @@
                   </ImageView>
                </children>
                 </HBox>
-            <HBox fx:id="temeratureHBox" alignment="CENTER" prefHeight="90.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox fx:id="temeratureHBox" alignment="CENTER" disable="true" prefHeight="90.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -101,7 +123,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="windSpeedHBox" alignment="CENTER" prefHeight="90.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox fx:id="windSpeedHBox" alignment="CENTER" disable="true" prefHeight="90.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>

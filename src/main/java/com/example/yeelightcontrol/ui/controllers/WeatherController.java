@@ -2,6 +2,7 @@ package com.example.yeelightcontrol.ui.controllers;
 
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
+import com.example.yeelightcontrol.api.model.Weather;
 import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
 import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
@@ -10,18 +11,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class WeatherController implements Initializable {
     private final String pathToMainViewFxml = "/com/example/yeelightcontrol/fxml/main-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
+    private Weather weather;
     private YeelightActions bulbActions;
     @FXML
     private Label nameTab;
+    @FXML
+    private HBox weatherHBox;
+    @FXML
+    private HBox temeratureHBox;
+    @FXML
+    private HBox windSpeedHBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,5 +67,25 @@ public class WeatherController implements Initializable {
         Stage stage = (Stage) nameTab.getScene().getWindow();
         SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
         sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
+    }
+
+    public void setWeatherInfo() {
+        Optional<Pair<String, String>> geographicCoordinates = DialogHelper.showWindowForEnteringCoordinate();
+        if(geographicCoordinates.isPresent()) {
+            double latitude = Double.parseDouble(geographicCoordinates.get().getKey());
+            double longitude = Double.parseDouble(geographicCoordinates.get().getValue());
+            //weather = new Weather(latitude, longitude);
+            setFieldsToEnable();
+        }
+    }
+
+    private void setFieldsToEnable() {
+        weatherHBox.setDisable(false);
+        temeratureHBox.setDisable(false);
+        windSpeedHBox.setDisable(false);
+    }
+
+    public void setColorOfDeviceBasedOnWeather() {
+
     }
 }
