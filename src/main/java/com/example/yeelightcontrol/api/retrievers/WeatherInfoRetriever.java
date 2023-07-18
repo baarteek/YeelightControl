@@ -1,20 +1,15 @@
 package com.example.yeelightcontrol.api.retrievers;
 
-import com.google.javascript.jscomp.jarjar.com.google.common.reflect.TypeToken;
-import com.google.javascript.jscomp.jarjar.com.google.gson.Gson;
-import com.google.javascript.jscomp.jarjar.com.google.gson.GsonBuilder;
-import com.google.javascript.jscomp.jarjar.com.google.gson.JsonDeserializer;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.runtime.ObjectMethods;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class WeatherInfoRetriever {
     private String API_URL;
@@ -53,17 +48,16 @@ public class WeatherInfoRetriever {
     }
 
     private Map<String, String> extractWeatherInfoFormJson(String json) {
-        Gson gson = new Gson();
-        Map<String, Object> fullData = gson.fromJson(json, new TypeToken<Map<String, Object>>(){}.getType());
-        Map<String, Object> weatherData = (Map<String, Object>) fullData.get("current_weather");
+        JSONObject jsonObject = new JSONObject(json);
+        JSONObject weatherData = jsonObject.getJSONObject("current_weather");
 
         Map<String, String> result = new HashMap<>();
-        result.put("temperature", String.valueOf(weatherData.get("temperature")));
-        result.put("windspeed", String.valueOf(weatherData.get("windspeed")));
-        result.put("winddirection", String.valueOf(weatherData.get("winddirection")));
-        result.put("weathercode", String.valueOf(weatherData.get("weathercode")));
+        result.put("temperature", String.valueOf(weatherData.getDouble("temperature")));
+        result.put("windspeed", String.valueOf(weatherData.getDouble("windspeed")));
+        result.put("winddirection", String.valueOf(weatherData.getDouble("winddirection")));
+        result.put("weathercode", String.valueOf(weatherData.getInt("weathercode")));
         result.put("is_day", String.valueOf(weatherData.get("is_day")));
-        result.put("time", (String) weatherData.get("time"));
+        result.put("time", weatherData.getString("time"));
 
         return result;
     }

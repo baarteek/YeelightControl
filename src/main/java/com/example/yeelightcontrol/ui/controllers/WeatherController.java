@@ -74,8 +74,16 @@ public class WeatherController implements Initializable {
         if(geographicCoordinates.isPresent()) {
             double latitude = Double.parseDouble(geographicCoordinates.get().getKey());
             double longitude = Double.parseDouble(geographicCoordinates.get().getValue());
-            //weather = new Weather(latitude, longitude);
+            tryGetWeather(latitude, longitude);
+        }
+    }
+
+    private void tryGetWeather(double latitude, double longitude) {
+        try {
+            weather = new Weather(latitude, longitude);
             setFieldsToEnable();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Weather Error", "An error occurred while trying to download weather information.");
         }
     }
 
@@ -86,6 +94,42 @@ public class WeatherController implements Initializable {
     }
 
     public void setColorOfDeviceBasedOnWeather() {
+        int weatherCode = (int) weather.getCode();
+        bulbActions.changeLightBehaviorBasedOnWeatherCode(weatherCode);
+        showWeatherInfo();
+    }
 
+    public void setColorOfDeviceBasedOnTemperature() {
+        double temperature = weather.getTemperature();
+        trySetColorOfDeviceBasedOnTemperature(temperature);
+        showWeatherInfo();
+    }
+
+    private void trySetColorOfDeviceBasedOnTemperature(double temperature) {
+        try {
+            bulbActions.setColorBasedOnTemperature(temperature);
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Temperature Error", "An error occurred while trying to change the color of the device based on temperature.");
+        }
+    }
+
+    public void setColorOfDeviceBasedOnWindSpeed() {
+        double windSpeed = weather.getWindSpeed();
+        trySetColorOfDeviceBasedOnWindSpeed(windSpeed);
+        showWeatherInfo();
+    }
+
+    private void trySetColorOfDeviceBasedOnWindSpeed(double windSpeed) {
+        try {
+            bulbActions.changeBulbColorBasedOnWindSpeed(windSpeed);
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Wind Speed Error", "An error occurred while trying to change the color of the device based on the wind speed.");
+        }
+    }
+
+    private void showWeatherInfo() {
+        String weatherDescription = weather.getWeatherDescription();
+        String message = "Weather: " + weatherDescription + "\nTemperature: " + weather.getTemperature() + " °C\nWind Speed: " + weather.getWindSpeed() + " km/h\nWind Direction: " + weather.getWindDirection();
+        DialogHelper.showInformationDialog("Weather", message);
     }
 }
