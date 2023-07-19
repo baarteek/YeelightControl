@@ -62,7 +62,7 @@
                               <Insets left="80.0" right="80.0" top="5.0" />
                            </VBox.margin>
                         </Slider>
-                        <Button mnemonicParsing="false" styleClass="normalButton" text="Pulse">
+                        <Button mnemonicParsing="false" onAction="#turnOnPulseEffect" styleClass="normalButton" text="Pulse">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -74,7 +74,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER" onMouseClicked="#turnOnNightMode" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
                      <image>
@@ -96,7 +96,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER" onMouseClicked="#turnOnReadMode" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
                      <image>
@@ -118,14 +118,14 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER" onMouseClicked="#turnOnFullIntensity" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
                      <image>
                         <Image url="@../icons/brighntess.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="299.0" text="Full Intensity">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="299.0" text="Full Intensity Mode">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -140,14 +140,14 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER" onMouseClicked="#turnOnRomanceMode" prefHeight="103.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
                      <image>
                         <Image url="@../icons/love.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="299.0" text="Romance">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="299.0" text="Romance Mode">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

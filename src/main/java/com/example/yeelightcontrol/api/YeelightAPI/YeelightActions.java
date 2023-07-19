@@ -70,6 +70,28 @@ public class YeelightActions {
         bulb.sendCommand(YeelightCommand.generateStartColorFlowCommand(0, 0, flowExpression));
     }
 
+    public void nightMode() throws IOException {
+        bulb.sendCommand(YeelightCommand.generateSetBrightCommand(20));
+        bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(1700));
+    }
+
+    public void fullIntensity() throws IOException {
+        bulb.sendCommand(YeelightCommand.generateSetBrightCommand(100));
+        bulb.sendCommand(YeelightCommand.generateSetRGBCommand(255, 255, 255));
+        bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(6500));
+    }
+
+    public void readMode() throws IOException {
+        bulb.sendCommand(YeelightCommand.generateSetBrightCommand(80));
+        bulb.sendCommand(YeelightCommand.generateSetColorTemperatureCommand(4500));
+        bulb.sendCommand(YeelightCommand.generateSetRGBCommand(255, 255, 220));
+    }
+
+    public void romanceMode() throws IOException {
+        bulb.sendCommand(YeelightCommand.generateSetBrightCommand(40));
+        bulb.sendCommand(YeelightCommand.generateSetRGBCommand(255, 70, 70));
+    }
+
     private void sleep(int duration) {
         try {
             Thread.sleep(duration);

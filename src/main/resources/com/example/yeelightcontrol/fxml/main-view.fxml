@@ -61,7 +61,7 @@
                         <Insets left="15.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Color Effects">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="310.0" text="Effects">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

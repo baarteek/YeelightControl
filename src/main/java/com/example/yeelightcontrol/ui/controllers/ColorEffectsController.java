@@ -62,5 +62,48 @@ public class ColorEffectsController implements Initializable {
         sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
     }
 
+    public void turnOnPulseEffect() {
+        int pulseSpeed = (int) delaySlider.getValue();
+        tryTurnOnPulseEffect(pulseSpeed);
+    }
 
+    private void tryTurnOnPulseEffect(int pulseSpeed) {
+        try {
+            bulbActions.pulseEffect(pulseSpeed);
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Pulse Effect Error", "An error occurred while trying to enable the pulsing effect on the device.");
+        }
+    }
+
+    public void turnOnNightMode() {
+        try {
+            bulbActions.nightMode();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Night Mode Error", "An error occurred while trying to enable Night Mode on device.");
+        }
+    }
+
+    public void turnOnReadMode() {
+        try {
+            bulbActions.readMode();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Read Mode Error", "An error occurred while trying to enable Read Mode on device.");
+        }
+    }
+
+    public void turnOnRomanceMode() {
+        try {
+            bulbActions.romanceMode();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Romance Mode Error", "An error occurred while trying to enable Romance Mode on device.");
+        }
+    }
+
+    public void turnOnFullIntensity() {
+        try {
+            bulbActions.fullIntensity();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Full Intensity Error", "An error occurred while trying to enable Full Intensity on device.");
+        }
+    }
 }
