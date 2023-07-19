@@ -22,6 +22,7 @@ public class MainViewController implements Initializable {
     private final String pathToMorseCodeViewFxml = "/com/example/yeelightcontrol/fxml/morse-code-view.fxml";
     private final String pathToDeviceAdjustmentViewFxml = "/com/example/yeelightcontrol/fxml/device-adjustment-view.fxml";
     private final String pathToWeatherViewFxml = "/com/example/yeelightcontrol/fxml/weather-view.fxml";
+    private final String pathToColorEffectsViewFxml = "/com/example/yeelightcontrol/fxml/color-effects-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
     private YeelightActions bulbActions;
@@ -136,6 +137,10 @@ public class MainViewController implements Initializable {
 
     public void switchToWeatherView() {
         switchToAnotherScene(pathToWeatherViewFxml);
+    }
+
+    public void switchToColorEffectsView() {
+        switchToAnotherScene(pathToColorEffectsViewFxml);
     }
 
     private void switchToAnotherScene(String pathToView) {

@@ -11,10 +11,15 @@ import java.net.ConnectException;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            Weather weather = new Weather(50.12, 23.11);
+        YeelightBulb bulb = new YeelightBulb("Bulb", "192.168.1.4");
+        YeelightActions actions = new YeelightActions(bulb);
 
-            System.out.println(weather.getTemperature());
+        try {
+            bulb.connect();
+
+            actions.pulseEffect(5000);
+
+            bulb.disconnect();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

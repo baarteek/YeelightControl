@@ -64,17 +64,9 @@ public class YeelightActions {
         bulb.sendCommand(YeelightCommand.generateSetNameCommand(name));
     }
 
-    public void rainbowColorEffect(int transitionDuration) throws IOException {
-        int saturation = 100;
-        for(int hue = 0; hue < 360; hue+=5) {
-            bulb.sendCommand(YeelightCommand.generateSetHSVCommand(hue, saturation));
-            sleep(transitionDuration);
-        }
-    }
 
-
-    public void pulseEffect(int pulseSpeed, int startBrightness, int endBrightness, int startColor, int endColor) throws IOException {
-        String flowExpression = String.format("%d, 1, %d, %d, %d, 1, %d, %d", pulseSpeed, startColor, startBrightness, pulseSpeed, endColor, endBrightness);
+    public void pulseEffect(int pulseSpeed) throws IOException {
+        String flowExpression = String.format("%d, 1, 1, 10, %d, 1, 1, 100", pulseSpeed, pulseSpeed);
         bulb.sendCommand(YeelightCommand.generateStartColorFlowCommand(0, 0, flowExpression));
     }
 
