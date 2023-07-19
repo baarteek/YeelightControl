@@ -23,6 +23,7 @@ public class MainViewController implements Initializable {
     private final String pathToDeviceAdjustmentViewFxml = "/com/example/yeelightcontrol/fxml/device-adjustment-view.fxml";
     private final String pathToWeatherViewFxml = "/com/example/yeelightcontrol/fxml/weather-view.fxml";
     private final String pathToColorEffectsViewFxml = "/com/example/yeelightcontrol/fxml/color-effects-view.fxml";
+    private final String pathToSettingsViewFxml = "/com/example/yeelightcontrol/fxml/settings-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
     private YeelightActions bulbActions;
@@ -52,6 +53,14 @@ public class MainViewController implements Initializable {
         }
     }
 
+    private void disconnectWithDevice() {
+        try {
+            bulb.disconnect();
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Disconnect Error", "An error occurred while trying to disconnect with the device.");
+        }
+    }
+
     private void turnOnDevice() {
         try {
             bulbActions.turnOn();
@@ -75,6 +84,7 @@ public class MainViewController implements Initializable {
     }
 
     public void backToHelloWorld() {
+        disconnectWithDevice();
         Stage stage = (Stage) nameDeviceLabel.getScene().getWindow();
         SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
         sceneSwitcher.switchToScene(pathToHelloViewFxml, pathToCssFile);
@@ -143,7 +153,12 @@ public class MainViewController implements Initializable {
         switchToAnotherScene(pathToColorEffectsViewFxml);
     }
 
+    public void switchToSettingsView() {
+        switchToAnotherScene(pathToSettingsViewFxml);
+    }
+
     private void switchToAnotherScene(String pathToView) {
+        disconnectWithDevice();
         Stage stage = (Stage) nameDeviceLabel.getScene().getWindow();
         SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
         sceneSwitcher.switchToScene(pathToView, pathToCssFile);

@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class ExchangeRatesController implements Initializable {
     private final String pathToMainViewFxml = "/com/example/yeelightcontrol/fxml/main-view.fxml";
+    private final String pathToSettingsViewFxml = "/com/example/yeelightcontrol/fxml/settings-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
     private YeelightActions bulbActions;
@@ -57,6 +58,17 @@ public class ExchangeRatesController implements Initializable {
         Stage stage = (Stage) nameTab.getScene().getWindow();
         SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
         sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
+    }
+
+    public void goToSettingsView() {
+        disconnectWithDevice();
+        switchToSettingsView();
+    }
+
+    private void switchToSettingsView() {
+        Stage stage = (Stage) nameTab.getScene().getWindow();
+        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        sceneSwitcher.switchToScene(pathToSettingsViewFxml, pathToCssFile);
     }
 
     public void dollarExchangeRateClicked() {

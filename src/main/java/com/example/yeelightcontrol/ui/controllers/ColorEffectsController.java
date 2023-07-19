@@ -2,7 +2,6 @@ package com.example.yeelightcontrol.ui.controllers;
 
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
-import com.example.yeelightcontrol.api.model.Weather;
 import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
 import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
@@ -18,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class ColorEffectsController implements Initializable {
     private final String pathToMainViewFxml = "/com/example/yeelightcontrol/fxml/main-view.fxml";
+    private final String pathToSettingsViewFxml = "/com/example/yeelightcontrol/fxml/settings-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
     private YeelightActions bulbActions;
@@ -60,6 +60,17 @@ public class ColorEffectsController implements Initializable {
         Stage stage = (Stage) nameTab.getScene().getWindow();
         SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
         sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
+    }
+
+    public void goToSettingsView() {
+        disconnectWithDevice();
+        switchToSettingsView();
+    }
+
+    private void switchToSettingsView() {
+        Stage stage = (Stage) nameTab.getScene().getWindow();
+        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        sceneSwitcher.switchToScene(pathToSettingsViewFxml, pathToCssFile);
     }
 
     public void turnOnPulseEffect() {
