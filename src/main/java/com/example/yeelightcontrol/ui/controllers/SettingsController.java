@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
     private final String pathToDeviceData = "src/main/resources/com/example/yeelightcontrol/devices/devices.txt";
+    private final String pathToHelloViewFxml = "/com/example/yeelightcontrol/fxml/hello-view.fxml";
     private final String pathToMainViewFxml = "/com/example/yeelightcontrol/fxml/main-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
@@ -140,5 +141,26 @@ public class SettingsController implements Initializable {
         infoBuilder.append("Sat: ").append(resultArray.getString(6)).append("\n");
 
         return infoBuilder.toString();
+    }
+
+    public void deleteDevice() {
+        boolean areYouSure = DialogHelper.showConfirmationDialog("Delete the Device", "Are you sure you want to delete the device?");
+        if(areYouSure) {
+            String name = bulb.getName();
+            String ip = bulb.getIP();
+            tryRemoveDeviceData(name, ip);
+            backToHelloView();
+        }
+    }
+
+    private void backToHelloView() {
+        disconnectWithDevice();
+        switchToHelloView();
+    }
+
+    private void switchToHelloView() {
+        Stage stage = (Stage) nameTab.getScene().getWindow();
+        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        sceneSwitcher.switchToScene(pathToHelloViewFxml, pathToCssFile);
     }
 }

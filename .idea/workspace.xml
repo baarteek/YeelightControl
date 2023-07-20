@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a3bfa5e-588e-4198-8260-c1acd271a813" name="Changes" comment="added support for bulb behavior based on gold price">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/api/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/yeelightcontrol/ui/controllers/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/settings-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/yeelightcontrol/fxml/settings-view.fxml" afterDir="false" />
     </list>
