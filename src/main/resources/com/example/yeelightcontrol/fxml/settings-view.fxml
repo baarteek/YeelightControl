@@ -64,7 +64,7 @@
                               <Insets bottom="10.0" top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" styleClass="normalButton" text="Rename" />
+                        <Button mnemonicParsing="false" onAction="#renameDevice" styleClass="normalButton" text="Rename" />
                      </children>
                   </VBox>
                </children>

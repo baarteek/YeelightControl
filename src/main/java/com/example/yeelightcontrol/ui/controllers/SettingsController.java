@@ -2,6 +2,8 @@ package com.example.yeelightcontrol.ui.controllers;
 
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightActions;
 import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
+import com.example.yeelightcontrol.api.utils.DeviceData;
+import com.example.yeelightcontrol.ui.utils.DataValidator;
 import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
 import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
@@ -16,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
+    private final String pathToDeviceData = "src/main/resources/com/example/yeelightcontrol/devices/devices.txt";
     private final String pathToMainViewFxml = "/com/example/yeelightcontrol/fxml/main-view.fxml";
     private final String pathToCssFile = "/com/example/yeelightcontrol/css/style.css";
     private YeelightBulb bulb;
@@ -23,7 +26,7 @@ public class SettingsController implements Initializable {
     @FXML
     private Label nameTab;
     @FXML
-    private TextField normalTextField;
+    private TextField newNameTextField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,5 +63,45 @@ public class SettingsController implements Initializable {
         sceneSwitcher.switchToScene(pathToMainViewFxml, pathToCssFile);
     }
 
+    public void renameDevice() {
+        String newName = newNameTextField.getText();
+        if(DataValidator.isNameValid(newName)) {
+            tryRenameDevice(newName);
+            replaceDeviceNameInFile(newName);
+            DeviceInfo.name = newName;
+            DialogHelper.showInformationDialog("Rename Device", "Device renamed successfully.");
+        } else {
+            DialogHelper.showInformationDialog("Invalid Name", "The given name is invalid.");
+        }
+    }
 
+    private void tryRenameDevice(String newName) {
+        try {
+            bulbActions.setName(newName);
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Rename Device Error", "An error occurred while trying to rename the device.");
+        }
+    }
+
+    private void replaceDeviceNameInFile(String newName) {
+        String oldName = bulb.getName();
+        String ip = bulb.getIP();
+        tryRemoveDeviceData(oldName, ip);
+        appendDeviceData(newName);
+    }
+
+    private void tryRemoveDeviceData(String name, String ip) {
+        DeviceData deviceData = new DeviceData(pathToDeviceData);
+        try {
+            deviceData.removeDeviceData(name, ip);
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Remove Device Data Error", "An error occurred while trying to remove device data.");
+        }
+    }
+
+    private void appendDeviceData(String newName) {
+        String ip = bulb.getIP();
+        DeviceData deviceData = new DeviceData(pathToDeviceData);
+        deviceData.appendDeviceData(newName, ip);
+    }
 }
