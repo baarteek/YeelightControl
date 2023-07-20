@@ -5,6 +5,7 @@ import com.example.yeelightcontrol.api.YeelightAPI.YeelightBulb;
 import com.example.yeelightcontrol.api.model.Weather;
 import com.example.yeelightcontrol.api.retrievers.GoldPriceRetriever;
 import com.example.yeelightcontrol.api.retrievers.WeatherInfoRetriever;
+import com.example.yeelightcontrol.ui.utils.DialogHelper;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -17,7 +18,8 @@ public class Main {
         try {
             bulb.connect();
 
-            actions.pulseEffect(5000);
+            System.out.println(actions.getInfo("power", "bright", "color_mode", "rgb", "ct", "hue", "sat"));
+
 
             bulb.disconnect();
         } catch (IOException e) {

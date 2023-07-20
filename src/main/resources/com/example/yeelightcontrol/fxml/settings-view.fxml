@@ -58,7 +58,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="newNameTextField" prefHeight="25.0" prefWidth="154.0" styleClass="normalTextField" />
+                              <TextField fx:id="newNameTextField" focusTraversable="false" prefHeight="25.0" prefWidth="154.0" promptText="New Name" styleClass="normalTextField" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" top="5.0" />
@@ -72,7 +72,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="460.0" styleClass="addedDevices">
+            <HBox alignment="CENTER" onMouseClicked="#showDeviceInformation" prefHeight="75.0" prefWidth="460.0" styleClass="addedDevices">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="interactiveIcon">
                      <image>

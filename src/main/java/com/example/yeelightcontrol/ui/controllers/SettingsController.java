@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -103,5 +105,40 @@ public class SettingsController implements Initializable {
         String ip = bulb.getIP();
         DeviceData deviceData = new DeviceData(pathToDeviceData);
         deviceData.appendDeviceData(newName, ip);
+    }
+
+    public void showDeviceInformation() {
+        String deviceInfoJson = getDeviceInfo();
+        if(deviceInfoJson.isEmpty()) {
+            DialogHelper.showErrorDialog("Device Info Error", "No device information has been retrieved.");
+        } else {
+            String deviceInfo = buildInfoMessage(deviceInfoJson);
+            DialogHelper.showInformationDialog("Device Information", deviceInfo);
+        }
+    }
+
+    private String getDeviceInfo() {
+        try {
+            return bulbActions.getInfo("power", "bright", "color_mode", "rgb", "ct", "hue", "sat");
+        } catch (IOException e) {
+            DialogHelper.showErrorDialog("Get Device Info Error", "An error occurred while trying to get device info.");
+        }
+        return "";
+    }
+
+    private String buildInfoMessage(String info) {
+        JSONObject jsonObject = new JSONObject(info);
+        JSONArray resultArray = jsonObject.getJSONArray("result");
+        StringBuilder infoBuilder = new StringBuilder();
+
+        infoBuilder.append("Power: ").append(resultArray.getString(0)).append("\n");
+        infoBuilder.append("Bright: ").append(resultArray.getString(1)).append("\n");
+        infoBuilder.append("Color Mode: ").append(resultArray.getString(2)).append("\n");
+        infoBuilder.append("RGB: ").append(resultArray.getString(3)).append("\n");
+        infoBuilder.append("CT: ").append(resultArray.getString(4)).append("\n");
+        infoBuilder.append("Hue: ").append(resultArray.getString(5)).append("\n");
+        infoBuilder.append("Sat: ").append(resultArray.getString(6)).append("\n");
+
+        return infoBuilder.toString();
     }
 }
