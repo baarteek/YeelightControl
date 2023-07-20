@@ -73,6 +73,7 @@ public class SettingsController implements Initializable {
             replaceDeviceNameInFile(newName);
             DeviceInfo.name = newName;
             DialogHelper.showInformationDialog("Rename Device", "Device renamed successfully.");
+            backToMainView();
         } else {
             DialogHelper.showInformationDialog("Invalid Name", "The given name is invalid.");
         }

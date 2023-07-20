@@ -6,6 +6,7 @@ import com.example.yeelightcontrol.api.utils.MorseCodeTranslator;
 import com.example.yeelightcontrol.ui.utils.DeviceInfo;
 import com.example.yeelightcontrol.ui.utils.DialogHelper;
 import com.example.yeelightcontrol.ui.utils.SceneSwitcher;
+import com.google.javascript.jscomp.jarjar.org.apache.tools.ant.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -92,13 +93,27 @@ public class MorseCodeController implements Initializable {
 
     public void displayMorseCodeOnDevice() {
         String message = displayMorseCodeTextField.getText();
-        if(message.isEmpty()) {
-            DialogHelper.showWarningDialog("Empty Text Field", "Fill in the field of the message that will be translated into morse code.");
-        } else {
-            int duration = (int) durationSlider.getValue();
-            String morseCode = MorseCodeTranslator.textToMorseCode(message);
-            tryDisplayMorseCodeOnDevice(morseCode, duration);
-        }
+        int duration = (int) durationSlider.getValue();
+        translateAndDisplayMorseCodeInBackground(message, duration);
+    }
+
+    public void translateAndDisplayMorseCodeInBackground(String message, int duration) {
+        javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<Void> () {
+            @Override
+            protected Void call() {
+                if (message.isEmpty()) {
+                    DialogHelper.showWarningDialog("Empty Text Field", "Fill in the field of the message that will be translated into morse code.");
+                } else {
+                    String morseCode = MorseCodeTranslator.textToMorseCode(message);
+                    tryDisplayMorseCodeOnDevice(morseCode, duration);
+                }
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     private void tryDisplayMorseCodeOnDevice(String morseCode, int duration) {
